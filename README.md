@@ -2,7 +2,7 @@
 
 ## Modules
 
-- [Module 0] (module0/module0.html)
+- [Module 0](module0/module0.html)
 
 ## Instructions for generating/updating slides
 1. Slides are written in markdown (.md files)
