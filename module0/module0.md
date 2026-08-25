@@ -35,6 +35,7 @@ Full details, learning objectives, and grading are all in the **syllabus** on Ca
 
 ## The Shape of the Course
 
+- **Readings** - complete before class
 - **Studios** — short, hands-on, in-class
 - **Labs 0–3** — build on each other, culminating in a final project
 - **2 Exams** — in-class, paper-based
