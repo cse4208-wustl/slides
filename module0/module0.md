@@ -15,7 +15,7 @@ style: |
   }
 ---
 
-# CSE 428S: Multi-Paradigm Programming in C++
+# CSE 4208: Multi-Paradigm Programming in C++
 ### Course Introduction
 
 Department of Computer Science & Engineering
