@@ -89,8 +89,9 @@ Sales_data& Sales_data::operator+=(const Sales_data &rhs) {
    * then lets the lean <code>+=</code> do the actual work in place.
 * Version B does it backwards. 
    * Every call to <code>+=</code> now has to construct a whole new <code>Sales_data</code> by value (via <code>operator+</code>)
-   * Then it copies its contents back into <code>*this</code>
+   * Then it copies its contents back into `*this`
    * one extra object built and destroyed for nothing, on every single compound assignment.
+* [Code experiment](https://github.com/cse4208-wustl/operator_experiment)
 
 ---
 
