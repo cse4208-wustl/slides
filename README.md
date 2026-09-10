@@ -5,3 +5,4 @@
 - [Module 2](module2/module2.html)
 - [Module 3](module3/module3.html)
 - [Module 4](module4/module4.html)
+- [Module 5](module5/module5.html)
