@@ -25,7 +25,7 @@ void report(const Shape &s) {
 
 int main() {
     Circle c(2.0);
-    report(c);   // ???
+    report(c);   // TRUE/FALSE: This line will compile
 }
 ```
 
@@ -122,13 +122,14 @@ delete sp;   // ???
 
 ---
 ### Q3 Answer
-In practice, just `~Shape ` — `~Circle` never runs.
+The behavior is undefined
 
-- Deleting a derived object through a base pointer whose destructor is **not** `virtual` is undefined behavior, so no compiler is *required* to behave any particular way here — but every mainstream compiler resolves `delete sp` the same way it resolves any non-virtual call through a pointer: statically, using `sp`'s type (`Shape*`). So only `~Shape()` runs — `~Circle()` is silently skipped, along with any cleanup it was responsible for.
+- Deleting a derived object through a base pointer whose destructor is **not** `virtual` is undefined behavior. 
+
 - Fix: `virtual ~Shape() { ... }`. Once the base destructor is `virtual`, it's `virtual` in every derived class automatically, and `delete sp` correctly runs `~Circle()` *then* `~Shape()`, printing `~Circle ~Shape `.
 
 ---
-### Q3 Demo: Fixing It with `virtual`
+### Q3 Demo: Not using `virtual`
 
 - Remove `virtual` from `~Shape` and remove `override` from other destructors
 - Different compilers will behave differently
@@ -191,7 +192,7 @@ Shape s;                          // (1)
 Shape *sp = new Circle(2.0);      // (2) — Circle overrides area()
 ```
 
-***True or False***: Line (1) compiles as long as `Shape` otherwise looks like a perfectly normal class (valid destructor, no other errors).
+***True or False***: Line (1) compiles.
 
 ---
 ### Q5 Answer

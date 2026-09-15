@@ -35,7 +35,7 @@
 
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
     <span class="hljs-function">Circle <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-number">2.0</span>)</span></span>;
-    <span class="hljs-built_in">report</span>(c);   <span class="hljs-comment">// ???</span>
+    <span class="hljs-built_in">report</span>(c);   <span class="hljs-comment">// TRUE/FALSE: This line will compile</span>
 }
 </code></pre>
 <p><em><strong>True or False</strong></em>: This compiles and prints the circle's area, even though <code>report</code> only knows about <code>Shape</code>.</p>
@@ -128,14 +128,18 @@ Shape *sp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Ci
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" lang="en-US">
 <h3 id="q3-answer">Q3 Answer</h3>
-<p>In practice, just <code>~Shape </code> — <code>~Circle</code> never runs.</p>
+<p>The behavior is undefined</p>
 <ul>
-<li>Deleting a derived object through a base pointer whose destructor is <strong>not</strong> <code>virtual</code> is undefined behavior, so no compiler is <em>required</em> to behave any particular way here — but every mainstream compiler resolves <code>delete sp</code> the same way it resolves any non-virtual call through a pointer: statically, using <code>sp</code>'s type (<code>Shape*</code>). So only <code>~Shape()</code> runs — <code>~Circle()</code> is silently skipped, along with any cleanup it was responsible for.</li>
-<li>Fix: <code>virtual ~Shape() { ... }</code>. Once the base destructor is <code>virtual</code>, it's <code>virtual</code> in every derived class automatically, and <code>delete sp</code> correctly runs <code>~Circle()</code> <em>then</em> <code>~Shape()</code>, printing <code>~Circle ~Shape </code>.</li>
+<li>
+<p>Deleting a derived object through a base pointer whose destructor is <strong>not</strong> <code>virtual</code> is undefined behavior.</p>
+</li>
+<li>
+<p>Fix: <code>virtual ~Shape() { ... }</code>. Once the base destructor is <code>virtual</code>, it's <code>virtual</code> in every derived class automatically, and <code>delete sp</code> correctly runs <code>~Circle()</code> <em>then</em> <code>~Shape()</code>, printing <code>~Circle ~Shape </code>.</p>
+</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" lang="en-US">
-<h3 id="q3-demo-fixing-it-with-virtual">Q3 Demo: Fixing It with <code>virtual</code></h3>
+<h3 id="q3-demo-not-using-virtual">Q3 Demo: Not using <code>virtual</code></h3>
 <ul>
 <li>Remove <code>virtual</code> from <code>~Shape</code> and remove <code>override</code> from other destructors</li>
 <li>Different compilers will behave differently</li>
@@ -217,7 +221,7 @@ Shape *sp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Ci
 Shape s;                          <span class="hljs-comment">// (1)</span>
 Shape *sp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Circle</span>(<span class="hljs-number">2.0</span>);      <span class="hljs-comment">// (2) — Circle overrides area()</span>
 </code></pre>
-<p><em><strong>True or False</strong></em>: Line (1) compiles as long as <code>Shape</code> otherwise looks like a perfectly normal class (valid destructor, no other errors).</p>
+<p><em><strong>True or False</strong></em>: Line (1) compiles.</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" lang="en-US">
 <h3 id="q5-answer">Q5 Answer</h3>
