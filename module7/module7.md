@@ -37,7 +37,7 @@ bool (*pf)(const string &, const string &);   // (A)
 bool *pf(const string &, const string &);     // (B)
 ```
 
-***Question***: For each declaration, show one line of code demonstrating how `pf` can actually be used.
+***Question***: For each declaration, show one line of code using `pf` that would demonstrate the difference between declarations on lines A and B.
 
 ---
 ### Q2 Answer
@@ -112,7 +112,7 @@ void useBigger(const string &s1, const string &s2,
                bool (*pf)(const string&, const string&));
 ```
 
-***Question***: Give one way to define a type alias for "pointer to a function that takes two `const string&` and returns `bool`".
+***Question***: Give one way to define a type alias for the second parameter of `useBigger`: "pointer to a function that takes two `const string&` and returns `bool`".
 
 ---
 ### Q5 Answer
