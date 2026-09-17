@@ -112,7 +112,7 @@ void useBigger(const string &s1, const string &s2,
                bool (*pf)(const string&, const string&));
 ```
 
-***Question***: Give one way to define a type alias for "pointer to a function that takes two `const string&` and returns `bool`," and explain the difference between them.
+***Question***: Give one way to define a type alias for "pointer to a function that takes two `const string&` and returns `bool`".
 
 ---
 ### Q5 Answer
