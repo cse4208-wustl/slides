@@ -1,4 +1,4 @@
-### Suggested Live Changes
+### Live Changes
 
 - **Trigger the capture error (Q3 rule):** delete `[count]` from `byValue`'s capture list (change it to `[]`) and recompile — the "use of `count` not captured" error is a good concrete anchor for "a lambda may use a local variable only if it captures it."
 - **Remove `mutable` (Q5):** delete it from `counter` and show the `const`-violation error; then do the same thing to `SquareFO::operator()` by trying to add a mutating statement without removing `const`, to show it's the identical rule.
