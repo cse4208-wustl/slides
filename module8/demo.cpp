@@ -18,37 +18,43 @@ auto makeMultiplier(int factor) -> function<int(int)> {
     return [factor](int x) { return x * factor; };
 }
 
+void report(ostream &os, const vector<int> &v, int threshold) {
+    for_each(v.begin(), v.end(),
+        [=, &os](int x) {
+            if (x > threshold) os << x << " ";
+        });
+}
+
 int main() {
-    // 1. Basic lambda: capture list, parameter list, trailing return type
+    cout << "Basic lambda: capture list, parameter list, trailing return type";
     auto square = [](int x) -> int { return x * x; };
     SquareFO fo = SquareFO();
     cout << "lambda: " << square(6) << "  functor: " << fo(6) << endl;
 
-    // 2. Capture by value vs. by reference (timing)
+    cout << "Capture by value vs. by reference (timing)" << endl;
     int count = 0;
     auto byValue = [count]() { return count; };
     auto byRef   = [&count]() { return count; };
     count = 42;
     cout << "byValue(): " << byValue() << "  byRef(): " << byRef() << endl;
 
-    // 3. mutable -- lambda keeps its own private, modifiable copy
+    cout << "mutable -- lambda keeps its own private, modifiable copy" << endl;
     int base = 100;
     auto counter = [base]() mutable { return ++base; };
     cout << counter() << " " << counter() << "  base is still " << base << endl;
 
-    // 4. Implicit capture mixed with an explicit reference capture
+    cout << "Implicit capture mixed with an explicit reference capture" << endl;
     int threshold = 5;
     vector<int> nums = {1, 6, 3, 9, 2, 8};
-    for_each(nums.begin(), nums.end(), [=](int x) {
-        if (x > threshold) cout << x << " ";
-    });
+    report(cout, nums, threshold);
+
     cout << endl;
 
-    // 5. Safely returning a lambda (capture by value)
+    cout << "Safely returning a lambda (capture by value)" << endl;
     auto triple = makeMultiplier(3);
     cout << "triple(7) = " << triple(7) << endl;
 
-    // 6. bind with placeholders
+    cout << "bind with placeholders" << endl;
     auto subtract = [](int a, int b) { return a - b; };
     auto reversedSubtract = bind(subtract, _2, _1);
     cout << "reversedSubtract(10, 3) = " << reversedSubtract(10, 3) << endl;
