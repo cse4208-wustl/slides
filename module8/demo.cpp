@@ -23,15 +23,7 @@ int main() {
     auto square = [](int x) -> int { return x * x; };
     SquareFO fo = SquareFO();
     cout << "lambda: " << square(6) << "  functor: " << fo(6) << endl;
-    auto square2 = [](int x) { 
-       if (x > 0) {
-          return x * x; 
-       }
-       else {
-          return x - x;
-       }
-    };
-    cout << square2(5) << endl;
+
     // 2. Capture by value vs. by reference (timing)
     int count = 0;
     auto byValue = [count]() { return count; };
