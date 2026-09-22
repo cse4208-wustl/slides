@@ -3,7 +3,7 @@ CXXFLAGS ?= -std=c++17 -Wall -Wextra -g
 TARGET   := demo
 SRC      := demo.cpp
 
-.PHONY: all run cpp11 clean
+.PHONY: all run clean
 
 # Default build: modern standard (C++17)
 all: $(TARGET)
