@@ -8,3 +8,4 @@
 - [Module 5](module5/module5.html)
 - [Module 6](module6/module6.html)
 - [Module 7](module7/module7.html)
+- [Module 8](module8/module8.html)
