@@ -9,3 +9,4 @@
 - [Module 6](module6/module6.html)
 - [Module 7](module7/module7.html)
 - [Module 8](module8/module8.html)
+- [Module 9](module9/module9.html)
