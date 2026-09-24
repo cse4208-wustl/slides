@@ -51,14 +51,14 @@ private:
 // ---------------------------------------------------------------------------
 class Cursor {
 public:
-    using Action = Cursor &(Cursor::*)();          // type alias for readability
+    using Action = Cursor& (Cursor::*)();          // type alias for readability
     enum Direction { HOME, FORWARD, BACK };
 
-    Cursor &home()    { pos_ = 0; return *this; }
-    Cursor &forward() { ++pos_;   return *this; }
-    Cursor &back()    { if (pos_ > 0) --pos_; return *this; }
+    Cursor& home()    { pos_ = 0; return *this; }
+    Cursor& forward() { ++pos_;   return *this; }
+    Cursor& back()    { if (pos_ > 0) --pos_; return *this; }
 
-    Cursor &move(Direction d) { return (this->*Menu[d])(); }   // note the parens
+    Cursor& move(Direction d) { return (this->*Menu[d])(); }   // note the parens
     size_t where() const { return pos_; }
 
 private:

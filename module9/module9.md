@@ -184,30 +184,15 @@ find_if(svec.begin(), svec.end(), bind(&string::empty, _1));    // (3) _1 is the
 - `mem_fn` and `bind`: resulting callable accepts **either** an object or a pointer to one.
 
 ---
-## Pointer to Member — Quick Reference
-
-| Syntax | Meaning |
-|---|---|
-| `T C::*p = &C::m;` | Pointer to data member `m` (type `T`) of class `C` |
-| `R (C::*pf)(Args) const = &C::f;` | Pointer to `const` member function |
-| `obj.*p` / `ptr->*p` | Apply member pointer to an object / pointer to object |
-| `(obj.*pf)(args)` | Call through member function pointer — parens required |
-| `using Action = R (C::*)(Args);` | Type alias for a member function pointer |
-| `static Action Menu[];` + `(this->*Menu[i])()` | Member function table |
-| `function<R (C&, Args)>` | Callable wrapper — signature adds the object |
-| `mem_fn(&C::f)` | Callable, type deduced; takes object or pointer |
-| `bind(&C::f, _1, ...)` | Callable; `_1` is the object; can fix other args |
-
----
 ## Member Function Table
 
 ```c++
 class Cursor {
 public:
-    using Action = Cursor &(Cursor::*)();
+    using Action = Cursor& (Cursor::*)();
     enum Direction { HOME, FORWARD, BACK };
-    Cursor &home();  Cursor &forward();  Cursor &back();
-    Cursor &move(Direction d) { return (this->*Menu[d])(); }
+    Cursor& home();  Cursor &forward();  Cursor &back();
+    Cursor& move(Direction d) { return (this->*Menu[d])(); }
 private:
     static Action Menu[];
 };
@@ -219,4 +204,18 @@ c.move(Cursor::FORWARD).move(Cursor::BACK);
 - `Menu` is `static` — one table shared by all objects; order must match the `enum`.
 - `move` selects **which** member at run time; `this` supplies **which object**.
 - Same idea compilers use for virtual functions (v-tables).
+
+---
+## Pointer to Member — Quick Reference
+
+| Syntax | Meaning |
+|---|---|
+| `T C::*p = &C::m;` | Pointer to member `m` (type `T`) of class `C` |
+| `R (C::*pf)(Args) const = &C::f;` | Pointer to `const` member function |
+| `obj.*p` / `ptr->*p` | Apply member pointer to an object |
+| `(obj.*pf)(args)` | Call through member function pointer |
+| `using Action = R (C::*)(Args);` | Type alias for a member function pointer |
+| `function<R (C&, Args)>` | Callable wrapper — signature adds the object |
+| `mem_fn(&C::f)` | Callable, type deduced; takes object or pointer |
+| `bind(&C::f, _1, ...)` | Callable; `_1` is the object; can fix other args |
 
