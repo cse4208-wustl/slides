@@ -116,7 +116,7 @@ void swapping() {
     Buffer x("x", 1000), y("y", 5);
     step("using std::swap; swap(x, y);");
     using std::swap;
-    swap(x, y);                                        // finds friend swap by ADL
+    swap(x, y);                                        // finds friend swap
     cout << "    x = " << x.name() << "(" << x.size() << "), y = "
          << y.name() << "(" << y.size() << ")" << endl;
     step("x = y;");
