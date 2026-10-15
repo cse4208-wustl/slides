@@ -12,3 +12,4 @@
 - [Module 9](module9/module9.html)
 - [Module 10](module10/module10.html)
 - [Module 11](module11/module11.html)
+- [Module 12](module11/module12.html)
