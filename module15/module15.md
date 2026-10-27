@@ -458,6 +458,28 @@ ostream &operator<<(ostream &os, const Point &p) {
 
 ---
 
+## Surprise: You've Already Used One!
+
+```c++
+auto p = make_shared<Player>("Ann", 5, 100.0);   // Player(string, int, double)
+auto s = make_shared<string>(10, 'c');           // "cccccccccc"
+```
+
+`make_shared` is a **variadic function template**:
+
+```c++
+template <typename T, typename... Args>
+shared_ptr<T> make_shared(Args&&... args) {          // simplified
+    return shared_ptr<T>(new T(std::forward<Args>(args)...));
+}
+```
+
+- `T` is given **explicitly**; `Args` is **deduced** from the constructor arguments
+- The pack is **expanded** into `T`'s constructor call, so **any** constructor works
+- Same idea: `vector::emplace_back`, `make_unique`, `std::thread`
+
+---
+
 ## Studio 15
 
 - Declare and define variadic function templates **recursively**

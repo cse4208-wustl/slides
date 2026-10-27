@@ -1232,6 +1232,47 @@ table {
   font-size: 24px;
 }
 ;" data-size="16:9">
+<h2 id="surprise-youve-already-used-one">Surprise: You've Already Used One!</h2>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++"><span class="hljs-keyword">auto</span> p = <span class="hljs-built_in">make_shared</span>&lt;Player&gt;(<span class="hljs-string">&quot;Ann&quot;</span>, <span class="hljs-number">5</span>, <span class="hljs-number">100.0</span>);   <span class="hljs-comment">// Player(string, int, double)</span>
+<span class="hljs-keyword">auto</span> s = <span class="hljs-built_in">make_shared</span>&lt;string&gt;(<span class="hljs-number">10</span>, <span class="hljs-string">&#x27;c&#x27;</span>);           <span class="hljs-comment">// &quot;cccccccccc&quot;</span>
+</code></pre>
+<p><code>make_shared</code> is a <strong>variadic function template</strong>:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T, <span class="hljs-keyword">typename</span>... Args&gt;
+<span class="hljs-function">shared_ptr&lt;T&gt; <span class="hljs-title">make_shared</span><span class="hljs-params">(Args&amp;&amp;... args)</span> </span>{          <span class="hljs-comment">// simplified</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">shared_ptr</span>&lt;T&gt;(<span class="hljs-keyword">new</span> <span class="hljs-built_in">T</span>(std::forward&lt;Args&gt;(args)...));
+}
+</code></pre>
+<ul>
+<li><code>T</code> is given <strong>explicitly</strong>; <code>Args</code> is <strong>deduced</strong> from the constructor arguments</li>
+<li>The pack is <strong>expanded</strong> into <code>T</code>'s constructor call, so <strong>any</strong> constructor works</li>
+<li>Same idea: <code>vector::emplace_back</code>, <code>make_unique</code>, <code>std::thread</code></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-theme="default" data-style="section {
+  font-size: 28px;
+}
+h1 {
+  color: #1a3c6e;
+}
+h2 {
+  color: #1a3c6e;
+}
+table {
+  font-size: 24px;
+}
+" lang="en-US" style="--theme:default;--style:section {
+  font-size: 28px;
+}
+h1 {
+  color: #1a3c6e;
+}
+h2 {
+  color: #1a3c6e;
+}
+table {
+  font-size: 24px;
+}
+;" data-size="16:9">
 <h2 id="studio-15">Studio 15</h2>
 <ul>
 <li>Declare and define variadic function templates <strong>recursively</strong></li>
