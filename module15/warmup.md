@@ -76,11 +76,3 @@ int HoldemGame::play(){
 
 This code compiles and runs. Review it as if it were submitted for code review: identify as many problems as you can, and propose a fix for each one.
 
-| # | Problem | Proposed fix |
-|---|---|---|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
-| 6 | | |
