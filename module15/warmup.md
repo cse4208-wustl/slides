@@ -1,6 +1,5 @@
 # Module 15 Warm-Up: Lab 1 Code Review
 
-Name: ______________________________  Partner: ______________________________
 
 ## The Setup
 
