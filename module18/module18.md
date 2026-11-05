@@ -378,8 +378,7 @@ cout << words.size() << endl;
 - Prints **`10`**: `unique` **can't** change the size
 ```
 sorted      : fox jumps over quick red red slow the the turtle (size 10)
-after unique: fox jumps over quick red slow the turtle the  (size 10)
-after erase : fox jumps over quick red slow the turtle (size 8)
+after unique: fox jumps over quick red slow the turtle red the (size 10)
 ```
 - `unique` moves the unique words to the **front**, returns the **new end**
 - Elements past `end_unique` are **unspecified** (here a leftover `"the"` and a moved-from `""`)
@@ -387,7 +386,9 @@ after erase : fox jumps over quick red slow the turtle (size 8)
   ```c++
   words.erase(end_unique, words.end());
   ```
-
+```
+after erase : fox jumps over quick red slow the turtle (size 8)
+```
 ---
 
 ### Q5: Which Calls Compile?
