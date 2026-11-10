@@ -1,1 +1,6 @@
 title: ""
+# Marp sources with C++ brace initialization ({{...}}) break Jekyll's Liquid
+# parser; the site links to the generated .html, so skip these .md files.
+exclude:
+  - module19/module19.md
+  - module19/questions.md
